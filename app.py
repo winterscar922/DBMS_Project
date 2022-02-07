@@ -70,9 +70,61 @@ def delete_user(idx):
     return redirect(url_for('users'))
 
 
+
 @app.route("/blogs")
 def blogs():
-    return render_template('blogs.html')
+    blogs = db.engine.execute('select * from blogs')
+    blogs_list = [row for row in blogs]
+    return render_template('blogs.html', blogs_list = blogs_list)
+
+@app.route('/add_blog' , methods=['GET' , 'POST'])
+def add_blog():
+   topic = request.form.get('topic')
+   id = request.form.get('id')
+   name = request.form.get('name')
+   description = request.form.get('description')
+   try:
+    db.engine.execute(f"insert into blogs values ('{topic}' ,{id}, '{name}', '{description}' ) ")
+   except Exception as e:
+    print(e)
+    db.session.rollback()
+    flash("Some error occured" , "danger" )
+    return redirect(url_for('blogs'))
+   flash('blog added')
+   return redirect(url_for('blogs'))
+
+@app.route('/edit_user/<int:idx>'  , methods=['GET' , 'POST'])
+def edit_blog(idx):
+    topic = request.form.get('topic')
+    id = request.form.get('id')
+    name = request.form.get('name')
+    description = request.form.get('description')
+    
+    try:
+        db.engine.execute(f'update user set topic = {topic} , id = {id}, name = {name}, description = {description} where id = {idx} ')
+    except Exception:
+        db.session.rollback()
+        flash("Some error occured" , "danger")
+        return redirect(url_for('blogs'))
+    flash('updated blog')
+    return redirect(url_for('blog'))
+
+
+
+@app.route('/delete_blog/<int:idx>' , methods=['GET' , 'POST'])
+def delete_blog(idx):
+    try:
+        db.engine.execute(f'delete from blogs where id = {idx}')
+    except Exception as e:
+        print(e)
+        db.session.rollback()
+        flash("Some error occured" , "danger")
+        return redirect(url_for('blogs'))
+    flash('Deleted blog')
+    return redirect(url_for('blogs'))
+
+  
+
 
 @app.route("/contests")
 def contests():
