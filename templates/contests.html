@@ -19,34 +19,41 @@
         padding-bottom: 20px;
       }
       body{
-        background-color: #D6E5FA;
+        background-color: #e7ee86;
       }
     </style>
   </head>
   <body>
     <div class="container">
-      <h1>USERS</h1>
+      <h1>CONTESTS</h1>
       <form>
         <div class="row">
           <div class="col  col-md-3">
-            <label for="inputName">Name</label>  
+            <label for="inputName">Author</label>  
             <input type="text" class="form-control" id="inputName">
           </div>
         </div>
         <div class="form-group col-md-3">
-          <label for="inputCity">City</label>
+          <label for="inputCity">User_ID</label>
           <input type="text" class="form-control" id="inputCity">
         </div>
+        <div class="form-group col-md-3">
+            <label for="inputCity">Contest_ID</label>
+            <input type="text" class="form-control" id="inputCity">
+        </div>
         <div class="form-group col-md-2">
-          <label for="inputZip">ID</label>
+          <label for="inputZip">Name</label>
           <input type="text" class="form-control" id="inputZip">
         </div>
         <div class="mb-3  col-md-3">
-          <label for="exampleInputEmail1" class="form-label">GMAIL</label>
+          <label for="exampleInputEmail1" class="form-label">Difficulty</label>
           <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+          <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
         </div>
-  
+        <div class="form-group col-md-3">
+            <label for="inputCity">Category</label>
+            <input type="text" class="form-control" id="inputCity">
+        </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>
@@ -55,19 +62,23 @@
         <table class="table">
             <thead>
               <tr>
-                <th scope="col">Username</th>
-                <th scope="col">Country</th>
-                <th scope="col">ID</th>
-                <th scope="col">Email</th>
+                <th scope="col">Author</th>
+                <th scope="col">User_ID</th>
+                <th scope="col">Contest_ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Difficulty</th>
+                <th scope="col">Category</th>
                 <th scope="col">Operations</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <th scope="row">Winterscar</th>
-                <td>India</td>
                 <td>1</td>
-                <td>winter@gmail.com</td>
+                <td>10</td>
+                <td>TEKNO CUP</td>
+                <td>EASY</td>
+                <td>Div3</td>
                 <td>
                     <button type="button" class="btn btn-warning">Edit</button>
                     <button type="button" class="btn btn-danger">Delete</button>
